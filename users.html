@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="userModule">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/user.js"></script>
+
+</head>
+<body ng-controller="userController">
+    <h3>{{title}}</h3>
+    <form>
+        <fieldset>
+            <table>
+                <tr>
+                    <td>User ID : </td>
+                    <td><input type = "text" ng-model="user.userId"></td>
+                </tr>
+                <tr>
+                    <td>Password : </td>
+                    <td><input type = "text" ng-model="user.password"></td>
+                </tr>
+                <tr>
+                    <td>Badge ID : </td>
+                    <td><input type = "text" ng-model="user.badgeId"></td>
+                </tr>
+                <tr>
+                    <td>Nickname : </td>
+                    <td><input type = "text" ng-model="user.nick"></td>
+                </tr>
+                <tr>
+                    <td>Fullname : </td>
+                    <td><input type = "text" ng-model="user.fullName"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                            <input type = "button" value="Add New" ng-click="add()" ng-show="createNew">
+                            <input type = "button" value="Update" ng-click="update()" ng-show="!createNew">                        
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Badge Id</th>
+                <th>Nickname</th>
+                <th>Fullname</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in users">
+                <td>{{$index + 1}}</td>
+                <td>{{user.badgeId}}</td>
+                <td>{{user.nick}}</td>
+                <td>{{user.fullName}}</td>
+                <td><input type="button" value="Edit" ng-click="edit(user)"></td>
+                <td><input type="button" value="Delete" ng-click="delete(user)"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

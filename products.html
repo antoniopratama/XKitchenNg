@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html ng-app="productModule">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Products</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/product.js"></script>
+</head>
+<body ng-controller="productController">
+    <h3>{{title}}</h3>
+    <form>
+        <fieldset>
+            <table>
+                <tr>
+                    <td>Category : </td>
+                    <td>
+                        <select name="categorySelect" id="categorySelect" ng-model="product.category">
+                            <option ng-repeat="option in categories" value="{{option._id}}">{{option.name}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Code : </td>
+                    <td><input type="text" ng-model="product.code"></td>
+                </tr>
+                <tr>
+                    <td>Initial : </td>
+                    <td><input type="text" ng-model="product.initial"></td>
+                </tr>
+                <tr>
+                    <td>Name : </td>
+                    <td><input type="text" ng-model="product.name"></td>
+                </tr>
+                    
+                <tr>
+                    <td>Description : </td>
+                    <td><input type="text" ng-model="product.description"></td>
+                </tr> 
+                <tr>
+                    <td>Price : </td>
+                    <td><input type="number" ng-model="product.price"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="button" value="Add New" ng-click="add()" ng-show="createNew">
+                        <input type="button" value="Update" ng-click="update()" ng-show="!createNew">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Code</th>
+                <th>Initial</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="product in products">
+                <td>{{product.category.name}}</td>
+                <td>{{product.code}}</td>
+                <td>{{product.initial}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.price}}</td>
+                <td>
+                    <input type="button" value="Edit" ng-click="edit(product)">
+                    <input type="button" value="Delete" ng-click="delete(product)">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+</body>
+</html>
