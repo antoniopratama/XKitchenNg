@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="reservationModule">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Reservations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/reservation.js"></script>
+</head>
+<body ng-controller="reservationController">
+    <h3>{{title}}</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Reff</th>
+                <th>Guest</th>
+                <th>Table</th>
+                <th>Waiter</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="reservation in reservations">
+                <td>{{reservation.reff}}</td>
+                <td>{{reservation.guest}}</td>
+                <td>{{reservation.table.code}}</td>
+                <td>{{reservation.user.nick}}</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
