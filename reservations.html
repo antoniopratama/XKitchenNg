@@ -1,23 +1,74 @@
 <!DOCTYPE html>
-<html ng-app="reservationModule">
+<html ng-app=reservationModule>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Reservations</title>
+    <title>reservation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="main.css" /> -->
     <script src="scripts/angular.min.js"></script>
     <script src="scripts/reservation.js"></script>
 </head>
+
 <body ng-controller="reservationController">
     <h3>{{title}}</h3>
+    <form>
+        <fieldset>
+            <table>
+                <tr>
+                    <td>reference</td>
+                    <td>
+                        <input type="text" ng-model="reservation.reff">
+                    </td>
+                </tr>
+                <tr>
+                    <td>guest</td>
+                    <td>
+                        <input type="text" ng-model="reservation.guest">
+                    </td>
+                </tr>
+                <tr>
+                    <td>table</td>
+                    <td>
+                        <select name="tableSelect" id="tableSelect" ng-model="reservation.table">
+                            <option ng-repeat="option in tables" value="{{option._id}}">{{option.code}}</option>
+                        </select>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>waiter</td>
+                    <td>
+                        <select name="userSelect" id="userSelect" ng-model="reservation.user">
+                            <option ng-repeat="option in users" value="{{option._id}}">{{option.nick}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date</td>
+                    <td>
+                        <input type="text" ng-model="reservation.date">                        
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="button" id="button" value="Add new" ng-click="add()" ng-show="createNew">
+                        <input type="button" id="button" value="Update" ng-click="update()" ng-show="!createNew">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form> 
+    <br>
     <table>
         <thead>
             <tr>
-                <th>Reff</th>
+                <th>Reference</th>
                 <th>Guest</th>
                 <th>Table</th>
                 <th>Waiter</th>
+                <th>Date</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -27,9 +78,15 @@
                 <td>{{reservation.guest}}</td>
                 <td>{{reservation.table.code}}</td>
                 <td>{{reservation.user.nick}}</td>
-                <td></td>
+                <td>{{reservation.date}}</td>
+                <td>
+                    <input type="button" id="button" value="Edit" ng-click="edit(reservation)">
+                    <input type="button" id="button1" value="Delete" ng-click="delete(reservation)">
+                </td>
             </tr>
         </tbody>
     </table>
+
 </body>
+
 </html>

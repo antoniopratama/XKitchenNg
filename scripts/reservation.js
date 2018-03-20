@@ -2,9 +2,8 @@ var reservationModule = angular
     .module('reservationModule', [])
     .controller('reservationController', function($scope, $http){
         $scope.title = "List of Reservations";
-        $scope.base_url = "http://localhost:3000/api/reservations";
-
         $scope.createNew = true;
+        $scope.base_url = "http://localhost:3000/api/reservations";
 
         $http.get($scope.base_url)
             .then(function(response){
@@ -13,14 +12,14 @@ var reservationModule = angular
         
         $scope.table_url = "http://localhost:3000/api/tables";
 
-        $http.get($scope_table.url)
+        $http.get($scope.table_url)
             .then(function(response){
                 $scope.tables = response.data;
             });
 
         $scope.user_url = "http://localhost:3000/api/users";
 
-        $http.get($scope_user.url)
+        $http.get($scope.user_url)
             .then(function(response){
                 $scope.users = response.data;
             });
@@ -54,7 +53,8 @@ var reservationModule = angular
                 { 'propName': 'reff', 'value':$scope.reservation.reff },
                 { 'propName': 'guest', 'value':$scope.reservation.guest },
                 { 'propName': 'table', 'value':$scope.reservation.table },
-                { 'propName': 'user', 'value':$scope.reservation.user }
+                { 'propName': 'user', 'value':$scope.reservation.user },
+                { 'propName': 'date', 'value':$scope.reservation.date }
             ];
             $http.patch($scope.base_url + "/" + $scope.reservation._id, editData)
                 .then(function(data, status){
@@ -76,7 +76,7 @@ var reservationModule = angular
                         .then(function(response){
                             $scope.reservations = response.data;
                             $scope.createNew = true;
-                            $scope.user = null;
+                            $scope.reservation = null;
                         });
                 })
         }
